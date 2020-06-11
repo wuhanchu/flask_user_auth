@@ -5,7 +5,7 @@ from flask import request
 
 from frame import permission_context
 from frame.extension.database import db
-from frame.http.JsonResult import JsonResult
+from frame.http.response import JsonResult
 from frame.util import sql_tool, param_tool
 from module.auth.extension.oauth2 import require_oauth
 from module.permission.model import Permission, PermissionScopeRetail, PermissionScope

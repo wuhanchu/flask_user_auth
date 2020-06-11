@@ -4,7 +4,7 @@ from flask import request, abort
 from flask_restplus._http import HTTPStatus
 
 from frame.extension.database import db
-from frame.http.JsonResult import JsonResult
+from frame.http.response import JsonResult
 from frame.util.db import auto_commit
 from module.license.util import create_license
 from . import blueprint, util

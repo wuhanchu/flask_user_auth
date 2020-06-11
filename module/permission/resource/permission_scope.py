@@ -1,7 +1,7 @@
 from flask import request
 
 from frame import permission_context
-from frame.http.JsonResult import JsonResult
+from frame.http.response import JsonResult
 from frame.util import param_tool, sql_tool
 from module.auth.extension.oauth2 import require_oauth
 from .. import blueprint

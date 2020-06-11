@@ -10,3 +10,4 @@ if __name__ == '__main__':
     # 启动web服务
     print(app.url_map)
     app.run('0.0.0.0', port=app.config.get("RUN_PORT"), threaded=False)
+

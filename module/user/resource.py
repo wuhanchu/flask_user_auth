@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 from authlib.integrations.flask_oauth2 import current_token
-from flask import request, jsonify
+from flask import request
 from sqlalchemy import func, Text
 
-from frame.http.JsonResult import JsonResult
+from frame.http.response import JsonResult
 from frame.util import com_tool, sql_tool, param_tool
 from module.auth.extension.oauth2 import require_oauth
 from module.user.model import *
@@ -133,10 +133,10 @@ def user_roles_list():
     return JsonResult.queryResult(list)
 
 
-@blueprint.route('/current', methods=['GET'])
-@require_oauth('profile')
-def current_user():
-    if current_token:
-        return jsonify(get_user_extend_info(current_token.user))
-    else:
-        return JsonResult.error()
+# @blueprint.route('/current', methods=['GET'])
+# @require_oauth('profile')
+# def current_user():
+#     if current_token:
+#         return jsonify(get_user_extend_info(current_token.user))
+#     else:
+#         return JsonResult.error()

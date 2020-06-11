@@ -9,15 +9,24 @@ from module.permission.model import PermissionScope
 from module.role.model import Role
 
 
-class User(BaseModel, db.Model):
+class User(db.Model):
     __tablename__ = 'user'
-    __table_args__ = {'extend_existing': True, 'schema': 'user_auth'}
+    __table_args__ = {'schema': 'user_auth'}
 
-    id = Column(INTEGER(11), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(40), unique=True)
+
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return "用户"
 
     def get_user_id(self):
         return self.id
 
+    def check_password(self, password):
+        return password == 'valid'
 
 class UserRole(BaseModel, db.Model):
     __tablename__ = 'user_role'

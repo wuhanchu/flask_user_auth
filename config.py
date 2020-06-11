@@ -7,18 +7,20 @@ class Config:
     # project
     PRODUCT_KEY = "user_auth"
     SECRET_KEY = 'z_markgo'
-    OAUTH2_REFRESH_TOKEN_GENERATOR: True
     SSL_DISABLE = False
     RUN_PORT = os.environ.get('RUN_PORT', 5000)
 
     # set enable
-    ENABLED_EXTENSION = ["loguru", "database", "permission", "postgrest", "sentry"]
+    ENABLED_EXTENSION = ["loguru", "database", "postgrest", "sentry"]
 
     # sentry
     SENTRY_DS = "https://c58a597cd1fb4a44b2b719f357325597@server.aiknown.cn:31027/4"
 
     # auth
     LICENSE_CHECK = False
+    # oauth_server
+    OAUTH2_REFRESH_TOKEN_GENERATOR = True
+    OAUTHLIB_INSECURE_TRANSPORT = True  # # 允许使用HTTP进行OAuth
 
     # module
     ENABLED_MODULE = [
@@ -57,11 +59,10 @@ class Config:
         }
     ]
 
-
 class DevelopmentConfig(Config):
     DEBUG = True
     # set enable
-    ENABLED_EXTENSION = ["loguru", "database", "permission", "postgrest"]
+    ENABLED_EXTENSION = ["loguru", "database", "postgrest"]
 
     RUN_PORT = 5000
     PROXY_SERVER_URL = os.environ.get('PROXY_SERVER_URL', "http://server.aiknown.cn:32023")

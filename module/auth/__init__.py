@@ -6,7 +6,7 @@ from flask import Blueprint
 
 from frame.util.py_utils import import_dir
 
-blueprint = Blueprint('auth', __name__, url_prefix='/auth')
+blueprint = Blueprint('auth', __name__, url_prefix='/oauth')
 
 
 def init_app(app, **kwargs):

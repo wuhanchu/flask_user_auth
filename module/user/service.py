@@ -2,7 +2,7 @@
 from flask import jsonify
 
 from frame.extension.database import db, db_schema
-from frame.http.JsonResult import queryToDict
+from frame.http.response import queryToDict
 
 
 def get_user_extend_info(user_record):
