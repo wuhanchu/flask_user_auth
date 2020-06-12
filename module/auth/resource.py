@@ -45,6 +45,7 @@ def logout():
 
 @blueprint.route('/create_client', methods=('GET', 'POST'))
 def create_client():
+    """注册客户端"""
     user = current_user()
     if not user:
         return redirect(url_for('auth.home'))
@@ -65,17 +66,23 @@ def create_client():
 # 跳转到授权页面
 @blueprint.route('/authorize', methods=['GET', 'POST'])
 def authorize():
+    """对用户进行状态保持查询，此处应该查询token，这里的user 必须是在我们网站注册过客户端的用户"""
     user = current_user()
     if request.method == 'GET':
+        # 发送账号密码
+        # 接收用户信息，校验信息
         try:
             grant = authorization.validate_consent_request(end_user=user)
         except OAuth2Error as error:
             return error.error
         return render_template('authorize.html', user=user, grant=grant)
     if not user and 'username' in request.form:
+        """在客户端没有授权的情况下，客户端应停止，重新登录，然后在进行第三方登录，这里只是简易登录方式"""
         username = request.form.get('username')
         user = User.query.filter_by(name=username).first()
     if request.form['confirm']:
+        """如果有用户登录注册过，这里是查询我们网站的注册用户的信息，查询无误后授权给用户授权成功可以登录"""
+        # todo
         grant_user = user
     else:
         grant_user = None
